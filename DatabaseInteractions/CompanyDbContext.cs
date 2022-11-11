@@ -26,6 +26,11 @@ namespace DatabaseInteractions
             optionsBuilder.UseSqlServer(connectionString);
         }
 
-
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<Company>(entity => {
+                entity.HasIndex(e => e.Isin).IsUnique();
+            });
+        }
     }
 }
