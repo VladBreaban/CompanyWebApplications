@@ -19,17 +19,22 @@ namespace DatabaseInteractions.Services
         }
         public async Task<CompanyApiModel> GetById(string companyId)
         {
+            CompanyApiModel result = null;
             // could use a mapper here
             var companyEntity = await _companyRepository.GetById(companyId);
-            var result = new CompanyApiModel
+            if(companyEntity is not null )
             {
-                Id = companyEntity.Id,
-                Name = companyEntity.Name,
-                Exchange = companyEntity.Exchange,
-                Ticker = companyEntity.Ticker,
-                Isin = companyEntity.Isin,
-                Website = companyEntity.Website
-            };
+                result = new CompanyApiModel
+                {
+                    Id = companyEntity.Id,
+                    Name = companyEntity.Name,
+                    Exchange = companyEntity.Exchange,
+                    Ticker = companyEntity.Ticker,
+                    Isin = companyEntity.Isin,
+                    Website = companyEntity.Website
+                };
+            }
+
             return result;
         }
     }
