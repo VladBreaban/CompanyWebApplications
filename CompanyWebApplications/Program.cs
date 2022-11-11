@@ -1,4 +1,8 @@
 using DatabaseInteractions;
+using DatabaseInteractions.Repositories;
+using DatabaseInteractions.RepositoriesInterfaces;
+using DatabaseInteractions.Services;
+using DatabaseInteractions.ServicesInterfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 
@@ -13,7 +17,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<CompanyDbContext>
    (o => o.UseSqlServer(builder.Configuration.
     GetConnectionString("DefaultConnection")));
-
+builder.Services.AddScoped<ICompanyRepository, CompanyRepository>();
+builder.Services.AddScoped<ICompanyService, CompanyService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
