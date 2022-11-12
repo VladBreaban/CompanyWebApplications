@@ -14,6 +14,6 @@ namespace DatabaseInteractions.ServicesInterfaces
         Task<CompanyApiModel> GetByIsin(string companyIsin);
         Task<List<CompanyApiModel>> GetAll();
         Task<bool> UpdateCompanyById(Guid companyId, CompanyApiModel company);
-        Task<bool> AddCompany(CompanyApiModel company);
+        Task<Guid> AddCompany(CompanyApiModel company);
     }
 }

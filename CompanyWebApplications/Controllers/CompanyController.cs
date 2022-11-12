@@ -67,7 +67,7 @@ namespace CompanyWebApplications.Controllers
         {
 
             var result = await _companyService.AddCompany(company);
-            return result == true ? Ok(company) : BadRequest("Could not create entity");
+            return result != Guid.Empty ? Ok(company) : BadRequest("Could not create entity");
         }
     }
 }

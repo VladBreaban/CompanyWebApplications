@@ -112,14 +112,14 @@ namespace DatabaseInteractions.Services
 
             return true;
         }
-        public async Task<bool> AddCompany(CompanyApiModel company)
+        public async Task<Guid> AddCompany(CompanyApiModel company)
         {
             try
             {
                 if (company != null)
                 {
                     Company companyEnitity = new Company();
-                    companyEnitity.Id = company.Id;
+                    companyEnitity.Id = Guid.NewGuid();
                     companyEnitity.Isin = company.Isin;
                     companyEnitity.Exchange = company.Exchange;
                     companyEnitity.Ticker = company.Ticker;
@@ -127,15 +127,17 @@ namespace DatabaseInteractions.Services
                     companyEnitity.Name = company.Name;
 
                    await _companyRepository.CreateEntity(companyEnitity).ConfigureAwait(false);
+                   return companyEnitity.Id;
                 }  
             }
             catch (Exception ex)
             {
                 //would be a great idea to have a logger here
-                return false;
+                return Guid.Empty;
             }
 
-            return true;
+            return Guid.Empty;
+
         }
     }
 }
