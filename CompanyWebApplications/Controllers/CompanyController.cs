@@ -29,5 +29,15 @@ namespace CompanyWebApplications.Controllers
             return await _companyService.GetById(companyId.ToString());
         }
 
-     }
+        [HttpPost("{companyId}")]
+        public async Task<ActionResult<CompanyApiModel>> CreateCompany(Guid companyId, [FromBody] CompanyApiModel company)
+        {
+            if (companyId == Guid.Empty)
+            {
+                return BadRequest("Received empty id");
+            }
+            //acelasi tip de controller si pt update
+           // var result = await _companyService.CreateCompany(companyId, company);
+        }
+    }
 }
