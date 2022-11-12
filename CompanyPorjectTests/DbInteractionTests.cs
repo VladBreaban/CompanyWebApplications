@@ -31,6 +31,7 @@ namespace CompanyPorjectTests
 
                 Assert.NotNull(companyCheck);
         }
+
         [Fact]
         public async Task Update_Should_Succeed()
         {
@@ -66,7 +67,24 @@ namespace CompanyPorjectTests
             Assert.NotEmpty(list);
         }
 
+        [Fact]
+        public async Task Get_By_Isin_Should_Succeed()
+        {
+            //Arrange
+            var isinName = "asdasd" + GetRandomNumber().ToString();
+            var companyService = Setup().GetService<ICompanyService>();
+            //ACT
+            var company = new DatabaseInteractions.APIModels.CompanyApiModel { Name = "Test 1", Exchange = "asdasd", Isin = isinName, Ticker = "asd", Website = "test1.com" };
 
+            var insertedId = await companyService.AddCompany(company);
+
+            var companyCheck = await companyService.GetByIsin(isinName);
+
+            //Assert
+
+            Assert.NotNull(companyCheck);
+            Assert.Equal(insertedId, companyCheck.Id);
+        }
         private ServiceProvider Setup()
         {
             var builder = new ConfigurationBuilder()
