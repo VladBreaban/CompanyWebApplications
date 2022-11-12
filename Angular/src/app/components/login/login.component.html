@@ -1,1 +1,36 @@
-<p>login works!</p>
+<mat-card class="login-card">
+    <div class="main-row">
+        <div class="col" style="width:40%; background-color: #ffbc00;">
+            <div class="row" style="margin-top: 60px">
+                <h1 style="text-align: center; font-family: sans-serif; color: whitesmoke;">New Here?
+                </h1>
+                <h4 style="text-align: center; font-family: sans-serif; color: whitesmoke; padding: 10px;">
+                    Sign Up and start browsing your favorite companies
+                </h4>
+                <div class="row">
+                    <button class="signup-button" mat-raised-button>SignUp</button>
+                </div>
+            </div>
+        </div>
+        <mat-divider [vertical]="true"></mat-divider>
+        <div class="col" style="width:60%">
+            <div class="row" style="margin-top: 60px">
+                <h1 style="text-align: center; font-family: sans-serif; color: #1177bb;">Login To Your Account
+                </h1>
+            </div>
+                <div class="container">
+                    <mat-label class="login-input-label">Email</mat-label>
+                    <mat-form-field class="full-width">    
+                        <input type="email" class="login-input" matInput name="email">
+                     </mat-form-field>
+                     <mat-label class="login-input-label">Password</mat-label>
+                    <mat-form-field class="full-width">    
+                        <input type="password" class="login-input" matInput name="password">
+                     </mat-form-field>
+                  </div>
+                  <div class="row d-flex justify-content-center">
+                    <button class="login-button" mat-raised-button>Login</button>
+                  </div>
+        </div>
+      </div>
+</mat-card>

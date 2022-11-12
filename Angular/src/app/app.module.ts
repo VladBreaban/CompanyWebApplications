@@ -7,6 +7,10 @@ import { AuthGuard } from './guards/auth.guard';
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { MainLayoutComponent } from './components/main-layout/main-layout.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatCardModule } from '@angular/material/card';
+import {MatDividerModule} from '@angular/material/divider';
+import {getMatFormFieldMissingControlError, MatFormFieldModule} from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -17,7 +21,11 @@ import { MainLayoutComponent } from './components/main-layout/main-layout.compon
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatCardModule,
+    MatDividerModule,
+    MatFormFieldModule,
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]
