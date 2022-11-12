@@ -1,5 +1,6 @@
 using DatabaseInteractions.APIModels;
 using DatabaseInteractions.ServicesInterfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.IdentityModel.Tokens;
@@ -9,6 +10,7 @@ namespace CompanyWebApplications.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [Authorize]
     public class CompanyController : ControllerBase
     {
 
