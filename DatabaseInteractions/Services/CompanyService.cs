@@ -2,15 +2,9 @@
 using DatabaseInteractions.Models;
 using DatabaseInteractions.RepositoriesInterfaces;
 using DatabaseInteractions.ServicesInterfaces;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.Design;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace DatabaseInteractions.Services
-{
+namespace DatabaseInteractions.Services;
+
     public class CompanyService : ICompanyService
     {
         private readonly ICompanyRepository _companyRepository;
@@ -140,4 +134,4 @@ namespace DatabaseInteractions.Services
 
         }
     }
-}
+

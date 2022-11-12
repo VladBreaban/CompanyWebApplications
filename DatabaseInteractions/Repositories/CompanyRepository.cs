@@ -2,14 +2,9 @@
 using DatabaseInteractions.Models;
 using DatabaseInteractions.RepositoriesInterfaces;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace DatabaseInteractions.Repositories
-{
+namespace DatabaseInteractions.Repositories;
+
     public class CompanyRepository : ICompanyRepository
     {
         private readonly CompanyDbContext _companyContext;
@@ -49,4 +44,4 @@ namespace DatabaseInteractions.Repositories
             await _companyContext.SaveChangesAsync();
         }
     }
-}
+

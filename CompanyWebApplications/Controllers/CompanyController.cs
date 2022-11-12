@@ -5,9 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.IdentityModel.Tokens;
 using System.Net.WebSockets;
+namespace CompanyWebApplications.Controllers;
 
-namespace CompanyWebApplications.Controllers
-{
     [ApiController]
     [Route("[controller]")]
     [Authorize]
@@ -70,4 +69,3 @@ namespace CompanyWebApplications.Controllers
             return result != Guid.Empty ? Ok(company) : BadRequest("Could not create entity");
         }
     }
-}

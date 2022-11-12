@@ -1,1 +1,11 @@
 global using Xunit;
+global using DatabaseInteractions;
+global using DatabaseInteractions.Models;
+global using DatabaseInteractions.Repositories;
+global using DatabaseInteractions.RepositoriesInterfaces;
+global using DatabaseInteractions.Services;
+global using DatabaseInteractions.ServicesInterfaces;
+global using Microsoft.EntityFrameworkCore;
+global using Microsoft.EntityFrameworkCore.Storage;
+global using Microsoft.Extensions.Configuration;
+global using Microsoft.Extensions.DependencyInjection;

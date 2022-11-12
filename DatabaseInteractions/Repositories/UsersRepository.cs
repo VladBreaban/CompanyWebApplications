@@ -1,14 +1,10 @@
 ﻿using DatabaseInteractions.Models;
 using DatabaseInteractions.RepositoriesInterfaces;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
-namespace DatabaseInteractions.Repositories
-{
+namespace DatabaseInteractions.Repositories;
+
     public class UsersRepository : IUserRepository
     {
         private readonly CompanyDbContext _companyContext;
@@ -22,6 +18,13 @@ namespace DatabaseInteractions.Repositories
         {
             var result = await _companyContext.Users.Where(x => x.email == userEmail).FirstOrDefaultAsync();
             return result;
-        }
+    }
+
+    public async Task Create(User user)
+    {
+        _companyContext.Users.Add(user);
+
+        await _companyContext.SaveChangesAsync();
     }
 }
+

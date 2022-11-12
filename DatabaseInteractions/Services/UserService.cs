@@ -1,4 +1,5 @@
 ﻿using DatabaseInteractions.APIModels;
+using DatabaseInteractions.Models;
 using DatabaseInteractions.RepositoriesInterfaces;
 using DatabaseInteractions.ServicesInterfaces;
 using System;
@@ -18,19 +19,50 @@ namespace DatabaseInteractions.Services
         }
         public async Task<UserLogin> GetByEmail(string userEmail)
         {
-            var entity = await _userRepository.GetUserByEmail(userEmail);
-            if(entity is not null)
+            try
             {
-                var result = new UserLogin
+                var entity = await _userRepository.GetUserByEmail(userEmail);
+                if (entity is not null)
                 {
-                    email = entity.email,
-                    password = entity.password
-                };
-                return result;
+                    var result = new UserLogin
+                    {
+                        email = entity.email,
+                        password = entity.password
+                    };
+                    return result;
+                }
             }
+            catch(Exception ex)
+            {
+                //looggin here
+                return null;
+            }
+
 
             return null;
 
+        }
+
+        public async Task<Guid> Create(string email, string hashPass)
+        {
+            try
+            {
+                var entity = new User
+                {
+                    Id = Guid.NewGuid(),
+                    email = email,
+                    password = hashPass
+
+                };
+
+                await _userRepository.Create(entity);
+
+                return entity.Id;
+            }
+            catch(Exception ex)
+            {
+                return Guid.Empty;
+            }
         }
     }
 }

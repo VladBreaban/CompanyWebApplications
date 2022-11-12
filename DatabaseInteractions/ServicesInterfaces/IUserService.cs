@@ -9,5 +9,7 @@ namespace DatabaseInteractions.ServicesInterfaces
     public interface IUserService
     {
         Task<APIModels.UserLogin> GetByEmail(string userEmail);
+
+        Task<Guid> Create(string email, string hashPass)
     }
 }

@@ -1,16 +1,6 @@
-using DatabaseInteractions;
-using DatabaseInteractions.Models;
-using DatabaseInteractions.Repositories;
-using DatabaseInteractions.RepositoriesInterfaces;
-using DatabaseInteractions.Services;
-using DatabaseInteractions.ServicesInterfaces;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 
-namespace CompanyPorjectTests
-{
+namespace CompanyPorjectTests;
+
     public class DbInteractionTests
     {
         private static readonly InMemoryDatabaseRoot InMemoryDatabaseRoot = new InMemoryDatabaseRoot();
@@ -112,4 +102,3 @@ namespace CompanyPorjectTests
         }
 
     }
-}

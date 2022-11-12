@@ -10,6 +10,6 @@ namespace DatabaseInteractions.RepositoriesInterfaces
     public interface IUserRepository 
     {
         Task<User> GetUserByEmail(string userEmail);
-
+        Task Create(User user);
     }
 }
