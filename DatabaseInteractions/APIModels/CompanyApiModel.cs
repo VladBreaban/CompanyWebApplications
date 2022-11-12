@@ -13,7 +13,7 @@ namespace DatabaseInteractions.APIModels
         public string Name { get; set; }
         public string Exchange { get; set; }
         public string Ticker { get; set; }
-        [RegularExpression("/^[A-Za-z]{2}/")]
+        [RegularExpression(@"^[A-Za-z]{2}.*")]
         public string Isin { get; set; }
         public string? Website { get; set; }
     }

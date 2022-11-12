@@ -11,5 +11,9 @@ namespace DatabaseInteractions.ServicesInterfaces
     public interface ICompanyService
     {
         Task<CompanyApiModel> GetById(string companyId);
+        Task<CompanyApiModel> GetByIsin(string companyIsin);
+        Task<List<CompanyApiModel>> GetAll();
+        Task<bool> UpdateCompanyById(Guid companyId, CompanyApiModel company);
+        Task<bool> AddCompany(CompanyApiModel company);
     }
 }

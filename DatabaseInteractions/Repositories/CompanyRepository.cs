@@ -1,4 +1,5 @@
-﻿using DatabaseInteractions.Models;
+﻿using DatabaseInteractions.APIModels;
+using DatabaseInteractions.Models;
 using DatabaseInteractions.RepositoriesInterfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -19,8 +20,33 @@ namespace DatabaseInteractions.Repositories
         }
         public async Task<Company> GetById(string companyId)
         {
-            var result = await _companyContext.Companies.Where(x=>x.Id.ToString() == companyId).FirstOrDefaultAsync();
+            var result = await _companyContext.Companies.FirstOrDefaultAsync(x => x.Id.ToString() == companyId);
             return result;
+        }
+
+        public async Task<Company> GetByIsin(string companyIsin)
+        {
+            var result = await _companyContext.Companies.FirstOrDefaultAsync(x => x.Isin == companyIsin);
+            return result;
+        }
+
+        public async Task<List<Company>> GetAll()
+        {
+            return _companyContext.Companies.ToList();
+        }
+
+        public async Task UpdateEntity(Company company)
+        {           
+            _companyContext.Companies.Update(company);
+            
+            await _companyContext.SaveChangesAsync();           
+        }
+
+        public async Task CreateEntity(Company company)
+        {
+            _companyContext.Companies.Add(company);
+
+            await _companyContext.SaveChangesAsync();
         }
     }
 }
