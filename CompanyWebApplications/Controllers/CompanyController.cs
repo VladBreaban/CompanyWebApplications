@@ -37,7 +37,8 @@ namespace CompanyWebApplications.Controllers
                 return BadRequest("Received empty id");
             }
             //acelasi tip de controller si pt update
-           // var result = await _companyService.CreateCompany(companyId, company);
+            // var result = await _companyService.CreateCompany(companyId, company);
+            return null;
         }
     }
 }
