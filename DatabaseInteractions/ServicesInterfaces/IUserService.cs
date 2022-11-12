@@ -10,6 +10,6 @@ namespace DatabaseInteractions.ServicesInterfaces
     {
         Task<APIModels.UserLogin> GetByEmail(string userEmail);
 
-        Task<Guid> Create(string email, string hashPass)
+        Task<Guid> Create(string email, string hashPass);
     }
 }

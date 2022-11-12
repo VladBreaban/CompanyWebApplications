@@ -1,4 +1,6 @@
 
+using CompanyWebApplications.Helpers;
+
 namespace CompanyPorjectTests;
 
     public class DbInteractionTests
@@ -75,21 +77,43 @@ namespace CompanyPorjectTests;
             Assert.NotNull(companyCheck);
             Assert.Equal(insertedId, companyCheck.Id);
         }
-        private ServiceProvider Setup()
+
+    [Fact]
+    public async Task CreateUser()
+    {
+        //Arrange
+        var userService = Setup().GetService<IUserService>();
+        //ACT
+        var userFromAngular = new DatabaseInteractions.APIModels.UserLogin { email = "test@yahoo.com", password = "parolaTest"};
+        var hashedEnteredPass = PasswordHelper.HashPassword(userFromAngular.password, "My%MX&z0up9WmTQseudpjoZZEHxRbe6H@1sfT8*wopqnr9wFmCD#rxfwQkx65pOBT&Z89&SXG=Z!Zyt0H1PdZTuJBpNjJ#Q9CyzQ");
+
+
+        await userService.Create(userFromAngular.email, hashedEnteredPass);
+
+        var userCheck = await userService.GetByEmail(userFromAngular.email);
+
+        //Assert
+
+        Assert.NotEqual(hashedEnteredPass, userFromAngular.password);
+        Assert.NotNull(userCheck);
+    }
+    private ServiceProvider Setup()
         {
             var builder = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
 
             var configuration = builder.Build();
             var services = new ServiceCollection();
-           services
-                .AddDbContext<CompanyDbContext>(options =>
-                {
-                    options.UseInMemoryDatabase("Companies", InMemoryDatabaseRoot);
+        services
+             .AddDbContext<CompanyDbContext>(options =>
+             {
+                 options.UseInMemoryDatabase("Companies", InMemoryDatabaseRoot);
 
-                })
-                  .AddScoped<ICompanyRepository, CompanyRepository>()
-                  .AddScoped<ICompanyService, CompanyService>();
+             })
+               .AddScoped<ICompanyRepository, CompanyRepository>()
+               .AddScoped<ICompanyService, CompanyService>()
+               .AddScoped<IUserRepository, UsersRepository>()
+               .AddScoped<IUserService, UserService>();
             var serviceProvider = services.BuildServiceProvider();
             return serviceProvider;
         }
