@@ -19,7 +19,7 @@ public class AuthController : ControllerBase
 
     private readonly IOptionsMonitor<AuthentificationOptionsMonitor> _optionsMonitor;
     private readonly IOptionsMonitor<PasswordOptionsMonitor> _passwordOptionsMonitor;
-    public AuthController( ILogger<AuthController> logger, IUserService userService, IOptionsMonitor<PasswordOptionsMonitor> passwordOptionsMonitor, IOptionsMonitor<AuthentificationOptionsMonitor> optionsMonitor)
+    public AuthController(ILogger<AuthController> logger, IUserService userService, IOptionsMonitor<PasswordOptionsMonitor> passwordOptionsMonitor, IOptionsMonitor<AuthentificationOptionsMonitor> optionsMonitor)
     {
         _logger = logger;
         _userService = userService;
@@ -30,7 +30,7 @@ public class AuthController : ControllerBase
     public IActionResult Login(UserLogin model)
     {
 
-        if (String.IsNullOrEmpty(model.email) || model.password is null)
+        if (String.IsNullOrEmpty(model.email) || String.IsNullOrEmpty(model.password ))
         {
             return BadRequest("Invalid client request");
         }
@@ -43,20 +43,25 @@ public class AuthController : ControllerBase
         var hashedEnteredPass = PasswordHelper.HashPassword(model.password, _passwordOptionsMonitor.CurrentValue.PasswordSalt);
         if (String.Equals(model.email, realUserFromDb.email) && hashedEnteredPass == realUserFromDb.password)
         {
-            var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_optionsMonitor.CurrentValue.JwtToken));
-            var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
-            var tokeOptions = new JwtSecurityToken(
-                //to do configurable urls
-                issuer: "https://localhost:5001",
-                audience: "https://localhost:5001",
-                claims: new List<Claim>(),
-                expires: DateTime.Now.AddMinutes(_optionsMonitor.CurrentValue.JwtTokenExpirationTimeMinutes),
-                signingCredentials: signinCredentials
-            );
-            var tokenString = new JwtSecurityTokenHandler().WriteToken(tokeOptions);
+            string tokenString = PasswordHelper.GetTokenString(_optionsMonitor.CurrentValue.JwtToken, _optionsMonitor.CurrentValue.JwtTokenExpirationTimeMinutes);
             return Ok(new DatabaseInteractions.Authentification.AuthenticatedResponse { Token = tokenString, Email = realUserFromDb.email });
         }
         return Unauthorized();
     }
+    [HttpPost("register")]
+    public  IActionResult Register(UserLogin model)
+    {
+
+        if (String.IsNullOrEmpty(model.email) || String.IsNullOrEmpty(model.password))
+        {
+            return BadRequest("Invalid client request");
+        }
+
+        var hashedEnteredPass = PasswordHelper.HashPassword(model.password, _passwordOptionsMonitor.CurrentValue.PasswordSalt);
+        var result = _userService.Create(model.email, hashedEnteredPass).ConfigureAwait(false).GetAwaiter().GetResult();
+        return result != Guid.Empty ? Ok() : BadRequest("Could not create User");
+    }
+
 
 }
+

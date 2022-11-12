@@ -2,15 +2,9 @@
 using DatabaseInteractions.Models;
 using DatabaseInteractions.RepositoriesInterfaces;
 using DatabaseInteractions.ServicesInterfaces;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.Design;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace DatabaseInteractions.Services
-{
+namespace DatabaseInteractions.Services;
+
     public class CompanyService : ICompanyService
     {
         private readonly ICompanyRepository _companyRepository;
@@ -112,14 +106,14 @@ namespace DatabaseInteractions.Services
 
             return true;
         }
-        public async Task<bool> AddCompany(CompanyApiModel company)
+        public async Task<Guid> AddCompany(CompanyApiModel company)
         {
             try
             {
                 if (company != null)
                 {
                     Company companyEnitity = new Company();
-                    companyEnitity.Id = company.Id;
+                    companyEnitity.Id = Guid.NewGuid();
                     companyEnitity.Isin = company.Isin;
                     companyEnitity.Exchange = company.Exchange;
                     companyEnitity.Ticker = company.Ticker;
@@ -127,15 +121,17 @@ namespace DatabaseInteractions.Services
                     companyEnitity.Name = company.Name;
 
                    await _companyRepository.CreateEntity(companyEnitity).ConfigureAwait(false);
+                   return companyEnitity.Id;
                 }  
             }
             catch (Exception ex)
             {
                 //would be a great idea to have a logger here
-                return false;
+                return Guid.Empty;
             }
 
-            return true;
+            return Guid.Empty;
+
         }
     }
-}
+

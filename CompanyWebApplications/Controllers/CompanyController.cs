@@ -5,9 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.IdentityModel.Tokens;
 using System.Net.WebSockets;
+namespace CompanyWebApplications.Controllers;
 
-namespace CompanyWebApplications.Controllers
-{
     [ApiController]
     [Route("[controller]")]
     [Authorize]
@@ -67,7 +66,6 @@ namespace CompanyWebApplications.Controllers
         {
 
             var result = await _companyService.AddCompany(company);
-            return result == true ? Ok(company) : BadRequest("Could not create entity");
+            return result != Guid.Empty ? Ok(company) : BadRequest("Could not create entity");
         }
     }
-}
