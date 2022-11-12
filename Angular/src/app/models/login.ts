@@ -1,4 +1,6 @@
-export interface LoginModel {
-    email: string;
-    password: string;
+export class LoginModel {
+  constructor() {}
+
+    email: string='';
+    password: string='';
   }

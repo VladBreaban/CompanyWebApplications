@@ -11,7 +11,7 @@ const routes: Routes = [
      path: '',
      component: MainLayoutComponent, canActivate:[AuthGuard],
     children: [
-      { path: 'dashboard', component: DashboardComponent}
+      { path: 'dashboard', component: DashboardComponent,canActivate: [AuthGuard]}
     ]
 
   }
