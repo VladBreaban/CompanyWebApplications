@@ -1,1 +1,16 @@
+
+<mat-toolbar>
+    <div class="row">
+        <div class="col" style="float:left;width: auto;">
+            Dashboard
+        </div>
+
+        <div class="col" style="float:right;width: 200px;">
+            <button (click) = "logout()"  matTooltip="Logout" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon">
+                <mat-icon>exit_to_app</mat-icon>
+            </button>               
+        </div>
+    </div>
+</mat-toolbar>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <router-outlet></router-outlet>

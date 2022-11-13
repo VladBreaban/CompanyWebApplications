@@ -21,8 +21,8 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatDialogModule} from "@angular/material/dialog";
 import { DialogOverviewExampleDialog } from './components/add-entry-dialog/add-entry-dialog.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-
-
+import { MatButtonModule } from '@angular/material/button';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -45,7 +45,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     HttpClientModule,
     MatInputModule,
     MatIconModule,
-    MatDialogModule , MatSnackBarModule
+    MatDialogModule , MatSnackBarModule, MatButtonModule, MatTooltipModule
   ],
   entryComponents:[
     DialogOverviewExampleDialog
