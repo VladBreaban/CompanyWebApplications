@@ -21,7 +21,7 @@ namespace CompanyWebApplications.Controllers;
             _companyService = companyService;
         }
 
-        [HttpGet("GetCompanyById")]
+        [HttpGet("GetCompanyById/{companyId}")]
         public async Task<ActionResult<CompanyApiModel>> GetCompanyById(Guid companyId)
         {
             if (companyId == Guid.Empty)
@@ -33,7 +33,7 @@ namespace CompanyWebApplications.Controllers;
         }
      
 
-        [HttpGet("GetCompanyByIsin")]
+        [HttpGet("GetCompanyByIsin/{companyIsin}")]
         public async Task<ActionResult<CompanyApiModel>> GetCompanyByIsin(string companyIsin)
         {
             if (companyIsin.IsNullOrEmpty())
@@ -50,8 +50,8 @@ namespace CompanyWebApplications.Controllers;
             return await _companyService.GetAll();
         }
 
-        [HttpPost("UpdateCompanyById")]
-        public async Task<ActionResult<CompanyApiModel>> UpdateCompanyById([FromBody] CompanyApiModel company)
+        [HttpPost("UpdateCompany")]
+        public async Task<ActionResult<CompanyApiModel>> UpdateCompany([FromBody] CompanyApiModel company)
         {
            if(company == null)
             {
