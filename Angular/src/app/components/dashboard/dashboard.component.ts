@@ -57,8 +57,13 @@ export class DashboardComponent implements OnInit {
       console.log('The dialog was closed');
       //ading created result to table
       if(result != null)
-      {
+      {        
+        if(isEdit == false)
+        {
+          result.id="00000000-0000-0000-0000-000000000000";
+        }
         this.dataService.createUpdateCompany(result,isEdit).subscribe(x=>{
+          console.log(x);
           this.populateDataSource();
           this.companyModel = new CompanyModel();
  

@@ -4,7 +4,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.IdentityModel.Tokens;
+using System.Net;
 using System.Net.WebSockets;
+
 namespace CompanyWebApplications.Controllers;
 
 [ApiController]

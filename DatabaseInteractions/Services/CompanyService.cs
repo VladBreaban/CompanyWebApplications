@@ -101,7 +101,7 @@ public class CompanyService : ICompanyService
         catch (Exception ex)
         {
             //would be a great idea to have a logger here
-            throw;
+            throw new Exception(ex?.InnerException?.Message);
         }
 
         return true;
@@ -127,7 +127,7 @@ public class CompanyService : ICompanyService
         catch (Exception ex)
         {
             //would be a great idea to have a logger here
-            throw;
+            throw new Exception(ex?.InnerException?.Message);
         }
 
         return Guid.Empty;
