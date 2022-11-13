@@ -9,6 +9,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class DialogData {
   company: CompanyModel = new CompanyModel();
   isEdit: boolean =false;
+  potentialCompanyId: string = '';
 }
 
 
@@ -22,7 +23,7 @@ export class DashboardComponent implements OnInit {
   columndefs : any[] = ['name','exchange', 'ticker', 'isin', 'website', 'edit'];
   public companies: CompanyModel[]=[];
   isCompanyModalVisible: boolean = false;
-  companyToBeAdded: CompanyModel = new CompanyModel();
+  companyModel: CompanyModel = new CompanyModel();
   constructor(public dialog: MatDialog, private dataService: DataServiceService, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
@@ -32,24 +33,34 @@ export class DashboardComponent implements OnInit {
     this.companies = [];
     this.dataService.getCompanies().subscribe(x=>{
       this.companies =x;
+      console.log(this.companies);
+
     });
   };
 
-  OpenAddCompanyModal(): void {
+  OpenCompanyModal(isEdit: boolean, rowElement?:CompanyModel): void {
+    this.companyModel = new CompanyModel();
+    let id = '';
+    if(isEdit == true)
+    {
+      id = rowElement!.id;
+    }
+
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
       width: '450px',
-      data: {company:this.companyToBeAdded, isEdit:false},
+      data: {company:this.companyModel, isEdit:isEdit, potentialCompanyId:id},
       disableClose:true
     });
+
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       //ading created result to table
       if(result != null)
       {
-        this.dataService.createUpdateCompany(result,false).subscribe(x=>{
+        this.dataService.createUpdateCompany(result,isEdit).subscribe(x=>{
           this.populateDataSource();
-          this.companyToBeAdded = new CompanyModel();
+          this.companyModel = new CompanyModel();
  
         },
         error=>{

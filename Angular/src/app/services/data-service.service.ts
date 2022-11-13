@@ -1,5 +1,6 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { CompanyModel } from '../models/company';
 // import { MatSnackBar } from '@angular/material/snack-bar';
@@ -21,7 +22,7 @@ export class DataServiceService {
     return response;    
   }   
 
-   getPropertyById(companyId: number) {
+   getCompanyById(companyId: string) {
     let jwt = localStorage.getItem('jwt');
     var reqHeader = new HttpHeaders({ 
         'Content-Type': 'application/json',
@@ -31,7 +32,7 @@ export class DataServiceService {
     return response;
   }
 
-  createUpdateCompany(model: CompanyModel, isUpdate:boolean) {
+  createUpdateCompany(model: CompanyModel, isUpdate:boolean) :Observable<CompanyModel> {
     let jwt = localStorage.getItem('jwt');
     var url = environment.urlServices;
     if(isUpdate == true)
@@ -43,17 +44,6 @@ export class DataServiceService {
     return this.http.post<CompanyModel>(url, model, {
         headers: new HttpHeaders({ "Content-Type": "application/json", 'Authorization': 'Bearer ' + jwt })
     });
-
-        // .subscribe({
-        //     error: (err: HttpErrorResponse) => {
-
-        //         // this._snackBar.open('Cannot create contract' + err.message, 'Close', {
-        //         //     horizontalPosition: "right",
-        //         //     verticalPosition: "top",
-        //         //     duration: 3000
-        //         // });
-        //     }
-        // })
   }
 
 
