@@ -1,0 +1,22 @@
+.mat-toolbar{
+   background-color: #9fc8e3;
+   height: 50px;
+   color: whitesmoke;
+}
+
+.container{
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 20px;
+}
+
+.button-add{
+    
+    background-color: #ffbc00;
+    border: white;
+    width: 200px;
+    border-radius: 20px;
+    height: 30px;
+    color: white;
+    font-weight: bolder;
+}

@@ -10,7 +10,9 @@ import { MainLayoutComponent } from './components/main-layout/main-layout.compon
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
 import {MatDividerModule} from '@angular/material/divider';
-import {getMatFormFieldMissingControlError, MatFormFieldModule} from '@angular/material/form-field';
+import { MatFormFieldModule} from '@angular/material/form-field';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatTableModule} from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import {getMatFormFieldMissingControlError, MatFormFieldModule} from '@angular/m
     MatCardModule,
     MatDividerModule,
     MatFormFieldModule,
+    MatToolbarModule,
+    MatTableModule,
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]
