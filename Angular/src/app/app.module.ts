@@ -18,6 +18,8 @@ import { MatInputModule } from '@angular/material/input';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTableModule} from '@angular/material/table';
 import {MatIconModule} from '@angular/material/icon';
+import {MatDialogModule} from "@angular/material/dialog";
+import { DialogOverviewExampleDialog } from './components/add-entry-dialog/add-entry-dialog.component';
 
 
 
@@ -26,7 +28,8 @@ import {MatIconModule} from '@angular/material/icon';
     AppComponent,
     LoginComponent,
     DashboardComponent,
-    MainLayoutComponent
+    MainLayoutComponent,
+    DialogOverviewExampleDialog
   ],
   imports: [
     BrowserModule,
@@ -41,7 +44,10 @@ import {MatIconModule} from '@angular/material/icon';
     HttpClientModule,
     MatInputModule,
     MatIconModule,
-  
+    MatDialogModule  
+  ],
+  entryComponents:[
+    DialogOverviewExampleDialog
   ],
   providers: [AuthGuard,       
      { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
