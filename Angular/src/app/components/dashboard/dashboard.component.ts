@@ -19,10 +19,14 @@ export class DashboardComponent implements OnInit {
   constructor(public dialog: MatDialog, private dataService: DataServiceService) { }
 
   ngOnInit(): void {
+    this.populateDataSource();
+  }
+  populateDataSource() : void{
+    this.companies = [];
     this.dataService.getCompanies().subscribe(x=>{
       this.companies =x;
     });
-  }
+  };
 
   OpenCompanyModal(): void {
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
@@ -35,7 +39,10 @@ export class DashboardComponent implements OnInit {
       //ading created result to table
       if(result != null)
       {
-        this.companies.push(result);
+        this.dataService.createUpdateCompany(result,false).subscribe(x=>{
+          this.populateDataSource();
+          this.companyToBeAdded = new CompanyModel();
+        });
       }
     });
   }

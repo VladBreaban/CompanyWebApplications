@@ -42,17 +42,18 @@ export class DataServiceService {
     }
     return this.http.post<CompanyModel>(url, model, {
         headers: new HttpHeaders({ "Content-Type": "application/json", 'Authorization': 'Bearer ' + jwt })
-    })
-        .subscribe({
-            error: (err: HttpErrorResponse) => {
+    });
 
-                // this._snackBar.open('Cannot create contract' + err.message, 'Close', {
-                //     horizontalPosition: "right",
-                //     verticalPosition: "top",
-                //     duration: 3000
-                // });
-            }
-        })
+        // .subscribe({
+        //     error: (err: HttpErrorResponse) => {
+
+        //         // this._snackBar.open('Cannot create contract' + err.message, 'Close', {
+        //         //     horizontalPosition: "right",
+        //         //     verticalPosition: "top",
+        //         //     duration: 3000
+        //         // });
+        //     }
+        // })
   }
 
 
