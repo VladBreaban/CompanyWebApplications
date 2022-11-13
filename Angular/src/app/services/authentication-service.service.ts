@@ -6,6 +6,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { environment } from 'src/environments/environment';
 import { LoginModel } from '../models/login';
 import{AuthenticatedResponse} from '../models/auth-response.model'
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
     providedIn: 'root',
@@ -15,6 +16,7 @@ export class AuthenticationService {
     constructor(
         private router: Router,
         private jwtHelper: JwtHelperService,
+        private _snackBar: MatSnackBar,
         private http: HttpClient,) { }
 
     isUserAuthenticated = (): boolean => {
@@ -24,12 +26,6 @@ export class AuthenticationService {
         }
         return false;
     }
-    logOut = () => {
-        localStorage.removeItem("jwt");
-        localStorage.removeItem("userEmail");
-        localStorage.removeItem("userId");
-    }
-
     login(credentials: LoginModel) {
         this.http.post<AuthenticatedResponse>(environment.urlServices+"Auth/login", credentials, {
             headers: new HttpHeaders({ "Content-Type": "application/json" })
@@ -44,11 +40,37 @@ export class AuthenticationService {
                 },
                 error: (err: HttpErrorResponse) => {
 
-                    // this._snackBar.open('Email sau parola gresite', 'Close', {
-                    //     horizontalPosition: "right",
-                    //     verticalPosition: "top",
-                    //     duration: 3000
-                    // });
+                     this._snackBar.open('Could Not loging', 'Close', {
+                         horizontalPosition: "right",
+                         verticalPosition: "top",
+                         duration: 3000
+                     });
+                }
+            })
+    }
+
+    register(newUser: LoginModel)
+    {
+        this.http.post(environment.urlServices+"Auth/register", newUser, {
+            headers: new HttpHeaders({ "Content-Type": "application/json" })
+        })
+            .subscribe({
+                next: () => {
+                    this._snackBar.open('Your account was successfully created. Please login!', 'Close', {
+                        horizontalPosition: "right",
+                        verticalPosition: "top",
+                        duration: 3000
+                    });
+
+                    this.router.navigate(["/login"]);
+                },
+                error: (err: HttpErrorResponse) => {
+
+                     this._snackBar.open('Email sau parola gresite', 'Close', {
+                         horizontalPosition: "right",
+                         verticalPosition: "top",
+                         duration: 3000
+                     });
                 }
             })
     }
