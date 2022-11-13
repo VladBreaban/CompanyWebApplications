@@ -29,6 +29,18 @@ builder.Services.AddAuthentication(opt => {
         };
     });
 // Add services to the container.
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAllHeaders",
+        builder =>
+        {
+            builder.AllowAnyOrigin()
+                   .AllowAnyHeader()
+                   .AllowAnyMethod();
+        });
+});
+
 builder.Services.AddAuthorization();
 
 builder.Services.AddControllers();
@@ -59,5 +71,6 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+app.UseCors("AllowAllHeaders");
 
 app.Run();
