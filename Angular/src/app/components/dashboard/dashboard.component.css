@@ -20,3 +20,11 @@
     color: white;
     font-weight: bolder;
 }
+
+table {
+    width: 100%;
+  }
+
+  .mat-icon{
+    font-size: medium;
+  }

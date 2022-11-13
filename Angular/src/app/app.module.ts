@@ -15,9 +15,11 @@ import { JwtHelperService, JWT_OPTIONS  } from '@auth0/angular-jwt';
 import { HttpClient } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule} from '@angular/material/form-field';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTableModule} from '@angular/material/table';
+import {MatIconModule} from '@angular/material/icon';
+
+
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import {MatTableModule} from '@angular/material/table';
     MatTableModule,
     FormsModule,
     HttpClientModule,
-    MatInputModule
+    MatInputModule,
+    MatIconModule,
+  
   ],
   providers: [AuthGuard,       
      { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
