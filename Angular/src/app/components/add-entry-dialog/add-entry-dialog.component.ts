@@ -1,6 +1,7 @@
 import { Component, Inject, Input, OnInit } from "@angular/core";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { CompanyModel } from "src/app/models/company";
+import { DialogData } from "../dashboard/dashboard.component";
 
 
 @Component({
@@ -9,11 +10,9 @@ import { CompanyModel } from "src/app/models/company";
   styleUrls: ['./add-entry-dialog.component.css']
 })
 export class DialogOverviewExampleDialog implements OnInit{
-  public isEdit = false;
-  public model!:CompanyModel;
   constructor(
     public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: CompanyModel,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,
   ) {}
 
   ngOnInit(): void {

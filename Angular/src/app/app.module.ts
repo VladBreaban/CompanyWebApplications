@@ -20,6 +20,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatIconModule} from '@angular/material/icon';
 import {MatDialogModule} from "@angular/material/dialog";
 import { DialogOverviewExampleDialog } from './components/add-entry-dialog/add-entry-dialog.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 
@@ -44,7 +45,7 @@ import { DialogOverviewExampleDialog } from './components/add-entry-dialog/add-e
     HttpClientModule,
     MatInputModule,
     MatIconModule,
-    MatDialogModule  
+    MatDialogModule , MatSnackBarModule
   ],
   entryComponents:[
     DialogOverviewExampleDialog

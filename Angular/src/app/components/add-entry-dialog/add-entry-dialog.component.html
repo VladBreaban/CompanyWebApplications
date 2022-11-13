@@ -1,32 +1,32 @@
-<div *ngIf="isEdit">
+<div *ngIf="data.isEdit">
   <h1 mat-dialog-title style="text-align: center; font-family: sans-serif; color: #1177bb;">Edit Company</h1>
   </div>
-<div *ngIf="!isEdit">
+<div *ngIf="!data.isEdit">
   <h1 mat-dialog-title style="text-align: center; font-family: sans-serif; color: #1177bb;">Add Company</h1>
 </div>
 <div class="container">
   <mat-label class="input-label">Company Name</mat-label>
   <mat-form-field  class="full-width">    
-      <input type="text" class="company-input" matInput name="name" [(ngModel)]="data.name">
+      <input type="text" class="company-input" matInput name="name" [(ngModel)]="data.company.name">
    </mat-form-field>
    <mat-label class="input-label">Exchange</mat-label>
   <mat-form-field class="full-width">    
-      <input type="text" class="company-input" matInput name="exchange" [(ngModel)]="data.exchange">
+      <input type="text" class="company-input" matInput name="exchange" [(ngModel)]="data.company.exchange">
    </mat-form-field>
    <mat-label class="input-label">Ticker</mat-label>
   <mat-form-field class="full-width">    
-      <input type="text" class="company-input" matInput name="ticker" [(ngModel)]="data.ticker">
+      <input type="text" class="company-input" matInput name="ticker" [(ngModel)]="data.company.ticker">
    </mat-form-field>
    <mat-label class="input-label">Isin</mat-label>
   <mat-form-field class="full-width">    
-      <input type="text" class="company-input" matInput name="isin" [(ngModel)]="data.isin">
+      <input type="text" class="company-input" matInput name="isin" [(ngModel)]="data.company.isin">
    </mat-form-field>
    <mat-label class="input-label">Website <h6>&nbsp; (optional)</h6></mat-label>
   <mat-form-field class="full-width">    
-      <input type="text" class="company-input" matInput name="website" [(ngModel)]="data.website">
+      <input type="text" class="company-input" matInput name="website" [(ngModel)]="data.company.website">
    </mat-form-field>
 </div>
 <div mat-dialog-actions>
     <button class="button-close" style="margin-right: 10px; margin-left:65px" mat-button (click)="onNoClick()">Close</button>
-    <button class="button-save" mat-button [mat-dialog-close]="data" cdkFocusInitial>Save</button>
+    <button class="button-save" mat-button [mat-dialog-close]="data.company" cdkFocusInitial>Save</button>
   </div>

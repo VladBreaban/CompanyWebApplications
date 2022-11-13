@@ -10,7 +10,7 @@ using System.Text;
 using System.Web;
 namespace CompanyWebApplications.Controllers;
 
-[Route("api/[controller]")]
+[Route("[controller]")]
 [ApiController]
 public class AuthController : ControllerBase
 {
