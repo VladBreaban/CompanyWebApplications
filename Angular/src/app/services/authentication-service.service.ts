@@ -40,7 +40,7 @@ export class AuthenticationService {
                     const email = response.email;
                     localStorage.setItem("jwt", token);
                     localStorage.setItem("userEmail", email);
-                    this.router.navigate(["dashboard"]);
+                    this.router.navigate(["/main/dashboard"]);
                 },
                 error: (err: HttpErrorResponse) => {
 

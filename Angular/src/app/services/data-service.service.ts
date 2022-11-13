@@ -2,14 +2,14 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { CompanyModel } from '../models/company';
-import { MatSnackBar } from '@angular/material/snack-bar';
+// import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataServiceService {
 
-  constructor(private http: HttpClient, private _snackBar: MatSnackBar) { }
+  constructor(private http: HttpClient) { }
 
    getCompanies() {
     let jwt = localStorage.getItem('jwt');
@@ -17,7 +17,7 @@ export class DataServiceService {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + jwt
      });
-    var response =  this.http.get<CompanyModel[]>(environment.urlServices + "Company/GetAllCompanies/", { headers: reqHeader });
+    var response =  this.http.get<CompanyModel[]>(environment.urlServices + "Company/GetAllCompanies", { headers: reqHeader });
     return response;    
   }   
 
@@ -45,11 +45,12 @@ export class DataServiceService {
     })
         .subscribe({
             error: (err: HttpErrorResponse) => {
-                this._snackBar.open('Cannot create contract' + err.message, 'Close', {
-                    horizontalPosition: "right",
-                    verticalPosition: "top",
-                    duration: 3000
-                });
+
+                // this._snackBar.open('Cannot create contract' + err.message, 'Close', {
+                //     horizontalPosition: "right",
+                //     verticalPosition: "top",
+                //     duration: 3000
+                // });
             }
         })
   }
