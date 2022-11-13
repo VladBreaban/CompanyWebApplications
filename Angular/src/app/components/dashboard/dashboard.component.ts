@@ -22,8 +22,8 @@ export class DashboardComponent implements OnInit {
 
   OpenCompanyModal(): void {
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
-      width: '250px',
-      data: this.companyToBeAdded
+      width: '450px',
+      data: this.companyToBeAdded,
     });
 
     dialogRef.afterClosed().subscribe(result => {

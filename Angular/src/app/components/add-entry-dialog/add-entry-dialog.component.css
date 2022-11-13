@@ -1,0 +1,51 @@
+.button-save{
+    
+    background-color: #ffbc00;
+    border: white;
+    width: 120px;
+    border-radius: 20px;
+    height: 30px;
+    color: white;
+    font-weight: bold;
+}
+
+.button-close{
+    
+   background-color: white;
+   border:  white;
+   width: 120px;
+   border-radius: 20px;
+   height: 30px;
+   color: #ffbc00;
+   font-weight: bold;
+}
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 40px;
+  }
+  
+  .container > * {
+    width: 100%;
+  }
+  
+ .company-input{
+    border-radius: 20px;
+    border: 1px solid gray;
+    height: 25px;
+    width: 90%;
+ }
+
+ .input-label{
+    color: gray;
+    margin-left: 2%;
+    margin-bottom: -20px;
+    display: inline-flex;
+ }
+
+ .mat-form-field {
+  
+   height: 60px;
+}

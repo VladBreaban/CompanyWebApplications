@@ -1,5 +1,32 @@
-<h1 mat-dialog-title>Hi {{data.name}}</h1>
+<div *ngIf="isEdit">
+  <h1 mat-dialog-title style="text-align: center; font-family: sans-serif; color: #1177bb;">Edit Company</h1>
+  </div>
+<div *ngIf="!isEdit">
+  <h1 mat-dialog-title style="text-align: center; font-family: sans-serif; color: #1177bb;">Add Company</h1>
+</div>
+<div class="container">
+  <mat-label class="input-label">Company Name</mat-label>
+  <mat-form-field  class="full-width">    
+      <input type="text" class="company-input" matInput name="name" [(ngModel)]="model.name">
+   </mat-form-field>
+   <mat-label class="input-label">Exchange</mat-label>
+  <mat-form-field class="full-width">    
+      <input type="text" class="company-input" matInput name="exchange" [(ngModel)]="model.exchange">
+   </mat-form-field>
+   <mat-label class="input-label">Ticker</mat-label>
+  <mat-form-field class="full-width">    
+      <input type="text" class="company-input" matInput name="ticker" [(ngModel)]="model.ticker">
+   </mat-form-field>
+   <mat-label class="input-label">Isin</mat-label>
+  <mat-form-field class="full-width">    
+      <input type="text" class="company-input" matInput name="isin" [(ngModel)]="model.isin">
+   </mat-form-field>
+   <mat-label class="input-label">Website <h6>&nbsp; (optional)</h6></mat-label>
+  <mat-form-field class="full-width">    
+      <input type="text" class="company-input" matInput name="website" [(ngModel)]="model.website">
+   </mat-form-field>
+</div>
 <div mat-dialog-actions>
-    <button mat-button (click)="onNoClick()">No Thanks</button>
-    <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+    <button class="button-close" style="margin-right: 10px; margin-left:65px" mat-button (click)="onNoClick()">Close</button>
+    <button class="button-save" mat-button [mat-dialog-close]="data" cdkFocusInitial>Save</button>
   </div>
