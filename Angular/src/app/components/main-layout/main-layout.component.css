@@ -3,3 +3,12 @@
     height: 50px;
     color: whitesmoke;
  }
+
+ .spacer {
+    flex: 1 1 auto;
+  }
+
+  .exit{
+    color:  #1177bb;
+    background-color: white;
+  }
