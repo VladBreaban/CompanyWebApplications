@@ -28,3 +28,12 @@ table {
   .mat-icon{
     font-size: medium;
   }
+
+  .companies-card{
+    margin-top: 20px;
+    border-radius: 20px;
+  }
+
+  a:-webkit-any-link {
+    text-decoration: none;
+  }

@@ -23,6 +23,7 @@ import { DialogOverviewExampleDialog } from './components/add-entry-dialog/add-e
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     HttpClientModule,
     MatInputModule,
     MatIconModule,
-    MatDialogModule , MatSnackBarModule, MatButtonModule, MatTooltipModule
+    MatDialogModule , MatSnackBarModule, MatButtonModule, MatTooltipModule,
+    MatProgressSpinnerModule,
   ],
   entryComponents:[
     DialogOverviewExampleDialog

@@ -73,7 +73,8 @@ export class DashboardComponent implements OnInit {
           this._snackBar.open('Cannot create company. Reason: ' + error.error, 'Close', {
             horizontalPosition: "right",
             verticalPosition: "top",
-            duration: 3000
+            duration: 5000,
+            panelClass: ['red-snackbar']
         });
 
         }

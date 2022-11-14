@@ -12,3 +12,9 @@
     color:  #1177bb;
     background-color: white;
   }
+
+  .hello{
+    margin-right: 15px;
+    font-weight: 400;
+    font-size: small;
+  }

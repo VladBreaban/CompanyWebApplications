@@ -7,10 +7,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./main-layout.component.css']
 })
 export class MainLayoutComponent implements OnInit {
+  currentEmail: string | null = "";
 
   constructor(private router: Router) { }
 
   ngOnInit(): void {
+    this.currentEmail = localStorage.getItem('userEmail');
+
   }
 
   logout():void{

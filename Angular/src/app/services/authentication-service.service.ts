@@ -40,10 +40,11 @@ export class AuthenticationService {
                 },
                 error: (err: HttpErrorResponse) => {
 
-                     this._snackBar.open('Could Not loging', 'Close', {
+                     this._snackBar.open('Something went wrong. Please try again.', 'Close', {
                          horizontalPosition: "right",
                          verticalPosition: "top",
-                         duration: 3000
+                         duration: 5000,
+                         panelClass: ['red-snackbar']
                      });
                 }
             })
@@ -59,17 +60,19 @@ export class AuthenticationService {
                     this._snackBar.open('Your account was successfully created. Please login!', 'Close', {
                         horizontalPosition: "right",
                         verticalPosition: "top",
-                        duration: 3000
+                        duration: 5000,
+                        panelClass: ['green-snackbar']
                     });
 
                     this.router.navigate(["/login"]);
                 },
                 error: (err: HttpErrorResponse) => {
 
-                     this._snackBar.open('Email sau parola gresite', 'Close', {
+                     this._snackBar.open('Something went wrong. Please try again.', 'Close', {
                          horizontalPosition: "right",
                          verticalPosition: "top",
-                         duration: 3000
+                         duration: 5000,
+                         panelClass: ['red-snackbar']
                      });
                 }
             })

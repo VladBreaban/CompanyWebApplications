@@ -13,7 +13,7 @@ const routes: Routes = [
      path: 'main',
      component: MainLayoutComponent,
     children: [
-      { path: 'dashboard', component: DashboardComponent}
+      { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]}
     ]
 
   }
